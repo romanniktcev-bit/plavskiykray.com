@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Родной край: Плавский округ | Достопримечательности, история, люди</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: #F5F8FC;
+            color: #1E2A2E;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+        h1, h2, h3, .logo, .nav-links a, .hero-title, .section-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #2C5F8A, #4A8BB7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #2C4A6E;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #4A8BB7;
+        }
+
+        .hero {
+            padding: 64px 0 32px 0;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: #E3EDF5;
+            padding: 6px 14px;
+            border-radius: 40px;
+            color: #2C5F8A;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 3.4rem;
+            font-weight: 600;
+            color: #1F4662;
+            margin-bottom: 20px;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #3A5A78;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        /* Слайдер */
+        .slider-container {
+            max-width: 1000px;
+            margin: 20px auto 40px;
+            position: relative;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+        .slide-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+            backdrop-filter: blur(4px);
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px 16px;
+            border-radius: 50%;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .slider-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        .slider-btn.prev {
+            left: 16px;
+        }
+        .slider-btn.next {
+            right: 16px;
+        }
+        .dots {
+            text-align: center;
+            padding: 12px 0;
+            background: #F5F8FC;
+        }
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 6px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .dot.active {
+            background-color: #2C5F8A;
+        }
+
+        .section {
+            padding: 70px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1F4A6E;
+        }
+        .section-sub {
+            font-size: 1rem;
+            color: #5D6F83;
+            margin-bottom: 40px;
+            max-width: 720px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .card {
+            cursor: pointer;
+            transition: all 0.25s;
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #e2edf2;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.08);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2C5F8A;
+        }
+        .card p {
+            color: #4B5E6F;
+        }
+
+        .place-card {
+            cursor: pointer;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+        .place-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 36px -12px rgba(0,0,0,0.12);
+        }
+        .place-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: #cbdbe6;
+        }
+        .place-content {
+            padding: 24px;
+        }
+        .place-content h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .badge-sub {
+            display: inline-block;
+            background: #E3EDF5;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 12px;
+            color: #2C5F8A;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #FDFBF7;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 32px;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #2C5F8A;
+            transition: 0.2s;
+        }
+        .close-modal:hover {
+            color: #1F4662;
+        }
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: #1F4A6E;
+            font-family: 'Playfair Display', serif;
+        }
+        .modal-text {
+            font-size: 1rem;
+            color: #2d3a44;
+            line-height: 1.6;
+        }
+        .modal-text p {
+            margin-bottom: 16px;
+        }
+
+        /* Кнопка наверх */
+        .to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2C5F8A;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 99;
+        }
+        .to-top:hover {
+            background: #1F4662;
+            transform: scale(1.05);
+        }
+
+        .sitemap {
+            background: #E3EDF5;
+            border-radius: 40px;
+            padding: 48px 40px;
+            margin: 40px 0 20px;
+        }
+        .sitemap h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            color: #1F4A6E;
+        }
+        .sitemap-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .sitemap-col {
+            flex: 1;
+            min-width: 200px;
+        }
+        .sitemap-col h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-left: 3px solid #4A8BB7;
+            padding-left: 12px;
+            margin-bottom: 16px;
+        }
+        .sitemap-col ul {
+            list-style: none;
+        }
+        .sitemap-col li {
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #2e3d4a;
+        }
+        .sitemap-col a {
+            text-decoration: none;
+            color: #2e3d4a;
+            display: inline-block;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+        .sitemap-col a:hover {
+            color: #2C5F8A;
+            text-decoration: underline;
+        }
+        .sitemap-col ul ul {
+            margin-left: 16px;
+            margin-top: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            font-size: 0.8rem;
+            color: #7C8E9C;
+            border-top: 1px solid #d6e2e8;
+        }
+
+        @media (max-width: 700px) {
+            .hero-title { font-size: 2.4rem; }
+            .container { padding: 0 20px; }
+            .navbar { flex-direction: column; }
+            .nav-links { justify-content: center; }
+            .slide img { height: 250px; }
+            .to-top { width: 40px; height: 40px; font-size: 20px; bottom: 20px; right: 20px; }
+        }
+        .btn-scroll {
+            background: #2C5F8A;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">Родной край: Плавский округ</div>
+            <div class="nav-links">
+                <a href="#places">Достопримечательности</a>
+                <a href="#history">История</a>
+                <a href="#people">Известные личности</a>
+                <a href="#sitemap">Карта сайта</a>
+            </div>
+        </div>
+
+        <!-- ГЛАВНАЯ – приветствие, анонсы, слайдер -->
+        <div id="home" class="hero">
+            <div class="hero-badge">Изучение родного края</div>
+            <h1 class="hero-title">Родной край: Плавский округ</h1>
+            <p class="hero-desc">Древняя история, уникальные достопримечательности, природные красоты и люди, прославившие малую родину.</p>
+            <button class="btn-scroll" onclick="document.getElementById('places').scrollIntoView({behavior:'smooth'})">Изучить достопримечательности</button>
+        </div>
+
+        <!-- Слайдер (анонс главных мест) -->
+        <div class="slider-container">
+            <div class="slider" id="slider">
+                <div class="slide">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Usadba_Gagarinih.jpg/1024px-Usadba_Gagarinih.jpg" alt="Усадьба Гагариных">
+                    <div class="slide-caption">Усадьба князей Гагариных</div>
+                </div>
+                <div class="slide">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/%D0%A6%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D1%8C_%D0%A1%D0%B5%D1%80%D0%B3%D0%B8%D1%8F_%D0%A0%D0%B0%D0%B4%D0%BE%D0%BD%D0%B5%D0%B6%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%28%D0%9F%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%29.jpg" alt="Церковь Сергия Радонежского">
+                    <div class="slide-caption">Церковь Сергия Радонежского</div>
+                </div>
+                <div class="slide">
+                    <img src="https://img-fotki.yandex.ru/get/15577/160548458.1/0_13e2b4_4f7f2e2a_orig.jpg" alt="Мемориал Вечный огонь">
+                    <div class="slide-caption">Мемориал «Вечный огонь»</div>
+                </div>
+                <div class="slide">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Monument_to_Boris_Safonov_in_Plavsk.jpg" alt="Памятник Б.Ф. Сафонову">
+                    <div class="slide-caption">Памятник Б.Ф. Сафонову</div>
+                </div>
+            </div>
+            <button class="slider-btn prev" id="prevBtn">❮</button>
+            <button class="slider-btn next" id="nextBtn">❯</button>
+            <div class="dots" id="dots"></div>
+        </div>
+
+        <!-- РАЗДЕЛ: ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+        <div id="places" class="section">
+            <h2 class="section-title">Достопримечательности</h2>
+            
+            <!-- Архитектурные памятники -->
+            <h3 style="font-size: 1.5rem; margin: 24px 0 16px 0;">🏛 Архитектурные памятники</h3>
+            <div class="cards-grid">
+                <div id="card-place-gagarin" class="place-card" data-modal="place-gagarin">
+                    <div class="place-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Usadba_Gagarinih.jpg/1024px-Usadba_Gagarinih.jpg');"></div>
+                    <div class="place-content"><h4>Усадьба князей Гагариных</h4><p>Дворянская усадьба XVIII–XIX вв., парк, пруды. Объект культурного наследия.</p><span class="badge-sub">архитектура</span></div>
+                </div>
+                <div id="card-place-torg" class="place-card" data-modal="place-torg">
+                    <div class="place-img" style="background-image: url('https://avatars.mds.yandex.net/get-altay/10420691/2a0000018eb293638bb192c95e4661d054d4/XXL_height');"></div>
+                    <div class="place-content"><h4>Торговые ряды (XIX в.)</h4><p>Купеческое наследие, исторический центр Плавска.</p><span class="badge-sub">архитектура</span></div>
+                </div>
+            </div>
+
+            <!-- Природные объекты -->
+            <h3 style="font-size: 1.5rem; margin: 48px 0 16px 0;">🌿 Природные объекты</h3>
+            <div class="cards-grid">
+                <div id="card-nature-river" class="card" data-modal="nature-river">
+                    <h3>🏞 Река Плава</h3>
+                    <p>Живописная река с извилистым руслом, популярное место отдыха и рыбалки.</p>
+                </div>
+                <div id="card-nature-park" class="card" data-modal="nature-park">
+                    <h3>🌳 Парк усадьбы Гагариных</h3>
+                    <p>Старинный пейзажный парк с липовыми аллеями и каскадом прудов.</p>
+                </div>
+                <div id="card-nature-zakaznik" class="card" data-modal="nature-zakaznik">
+                    <h3>🦉 Заказник «Плавский»</h3>
+                    <p>Охраняемая природная территория с редкими видами растений и птиц.</p>
+                </div>
+            </div>
+
+            <!-- Храмы -->
+            <h3 style="font-size: 1.5rem; margin: 48px 0 16px 0;">⛪ Храмы</h3>
+            <div class="cards-grid">
+                <div id="card-church-sergiy" class="place-card" data-modal="place-church">
+                    <div class="place-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/%D0%A6%D0%B5%D1%80%D0%BA%D0%BE%D0%B2%D1%8C_%D0%A1%D0%B5%D1%80%D0%B3%D0%B8%D1%8F_%D0%A0%D0%B0%D0%B4%D0%BE%D0%BD%D0%B5%D0%B6%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%28%D0%9F%D0%BB%D0%B0%D0%B2%D1%81%D0%BA%29.jpg');"></div>
+                    <div class="place-content"><h4>Церковь Сергия Радонежского</h4><p>Духовный центр, изящный храм с богатой историей.</p><span class="badge-sub">храм</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ: ИСТОРИЯ -->
+        <div id="history" class="section">
+            <h2 class="section-title">История родного края</h2>
+            <div class="cards-grid">
+                <div id="card-history-ancient" class="card" data-modal="history-ancient">
+                    <h3>📜 Древняя история</h3>
+                    <p>Неолит, вятичи, курганы и торговые пути. Заселение края с древнейших времён.</p>
+                </div>
+                <div id="card-history-19" class="card" data-modal="history-19">
+                    <h3>🏛 XIX – XX века</h3>
+                    <p>Купеческий Плавск, ярмарки, железная дорога, земство, революции и войны.</p>
+                </div>
+                <div id="card-history-modern" class="card" data-modal="history-modern">
+                    <h3>🌟 Современность</h3>
+                    <p>Послевоенное восстановление, развитие сельского хозяйства, промышленности и туризма.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ: ИЗВЕСТНЫЕ ЛИЧНОСТИ -->
+        <div id="people" class="section">
+            <h2 class="section-title">Известные личности</h2>
+            <div class="cards-grid">
+                <div id="card-people-heroes" class="card" data-modal="people-heroes">
+                    <h3>⭐ Герои Советского Союза</h3>
+                    <p>12 героев, включая дважды Героя Б.Ф. Сафонова, прославивших землю в боях.</p>
+                </div>
+                <div id="card-people-scientists" class="card" data-modal="people-culture">
+                    <h3>📚 Учёные, писатели, деятели культуры</h3>
+                    <p>В.А. Ситников, Н.И. Родичев, художники и музыканты – гордость района.</p>
+                </div>
+                <div id="card-people-honor" class="card" data-modal="people-honor">
+                    <h3>🏅 Почётные граждане Плавска</h3>
+                    <p>Врачи, учителя, ветераны, строители, внёсшие вклад в развитие города.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- КАРТА САЙТА (с новой структурой) -->
+        <div id="sitemap" class="sitemap">
+            <h3>🗺 Карта сайта — кликните по пункту, чтобы перейти</h3>
+            <div class="sitemap-grid">
+                <div class="sitemap-col">
+                    <h4>Главная</h4>
+                    <ul><li><a href="#home">Приветствие и анонсы</a></li></ul>
+                    <h4>Достопримечательности</h4>
+                    <ul>
+                        <li><strong>Архитектурные памятники</strong>
+                            <ul><li><a href="#card-place-gagarin">Усадьба Гагариных</a></li><li><a href="#card-place-torg">Торговые ряды</a></li></ul>
+                        </li>
+                        <li><strong>Природные объекты</strong>
+                            <ul><li><a href="#card-nature-river">Река Плава</a></li><li><a href="#card-nature-park">Парк усадьбы Гагариных</a></li><li><a href="#card-nature-zakaznik">Заказник «Плавский»</a></li></ul>
+                        </li>
+                        <li><strong>Храмы</strong>
+                            <ul><li><a href="#card-church-sergiy">Церковь Сергия Радонежского</a></li></ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sitemap-col">
+                    <h4>История</h4>
+                    <ul>
+                        <li><a href="#card-history-ancient">Древняя история</a></li>
+                        <li><a href="#card-history-19">XIX–XX века</a></li>
+                        <li><a href="#card-history-modern">Современность</a></li>
+                    </ul>
+                    <h4>Известные личности</h4>
+                    <ul>
+                        <li><a href="#card-people-heroes">Герои Советского Союза</a></li>
+                        <li><a href="#card-people-scientists">Учёные, писатели, деятели культуры</a></li>
+                        <li><a href="#card-people-honor">Почётные граждане</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 — Родной край: Плавский округ. Изучение малой родины.</p>
+            <p>Кликните на любую карточку для подробной информации</p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-title" class="modal-title"></div>
+            <div id="modal-text" class="modal-text"></div>
+        </div>
+    </div>
+
+    <!-- Кнопка наверх -->
+    <button class="to-top" id="toTopBtn">↑</button>
+
+    <script>
+        // ==================== СЛАЙДЕР ====================
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots');
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        function createDots() {
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (idx === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = idx;
+                    updateSlider();
+                    resetAutoSlide();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetAutoSlide();
+        });
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoSlide();
+        });
+
+        createDots();
+        startAutoSlide();
+
+        // ==================== КНОПКА НАВЕРХ ====================
+        const toTopBtn = document.getElementById('toTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                toTopBtn.style.display = 'flex';
+            } else {
+                toTopBtn.style.display = 'none';
+            }
+        });
+        toTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==================== МОДАЛЬНЫЕ ОКНА ====================
+        const modalData = {
+            'place-gagarin': {
+                title: 'Усадьба князей Гагариных',
+                text: `<p>Родовая усадьба князей Гагариных расположена в селе Бочарово (7 км от Плавска). Построена в конце XVIII века в стиле классицизм. Ансамбль включал господский дом, флигели, конный двор, церковь и пейзажный парк с прудами. Усадьба принадлежала князьям Гагариным — старинному роду, восходящему к Рюриковичам. В усадьбе бывали И.С. Тургенев, А.А. Фет. После революции здания использовались под школу и больницу. Сохранились парк, фрагменты дома и въездные ворота. Объект культурного наследия федерального значения.</p>`
+            },
+            'place-torg': {
+                title: 'Торговые ряды (XIX век)',
+                text: `<p>Торговые ряды в центре Плавска построены в 1890–1892 гг. на средства купцов Головиных. Два корпуса из красного кирпича в стиле эклектики с арочными проёмами. Внутри размещались лавки, трактир. До наших дней сохранили исторический облик, используются под магазины и кафе. В 2015 году отреставрированы. Объект культурного наследия регионального значения.</p>`
+            },
+            'nature-river': {
+                title: 'Река Плава',
+                text: `<p>Река Плава — левый приток Упы, длина 89 км. Протекает по живописной лесостепной местности, образуя излучины и пойменные луга. Популярное место для рыбалки (плотва, окунь, щука), водных походов на байдарках. Берега реки — место обитания бобров, ондатр и водоплавающих птиц.</p>`
+            },
+            'nature-park': {
+                title: 'Парк усадьбы Гагариных',
+                text: `<p>Пейзажный парк площадью около 10 га, заложенный в конце XVIII века. Сохранились липовые аллеи, каскад из трёх прудов, вековые дубы. Парк является частью усадебного комплекса. В 2023 году проложена экологическая тропа «Гагаринская аллея». Место для прогулок и исторических фестивалей.</p>`
+            },
+            'nature-zakaznik': {
+                title: 'Заказник «Плавский»',
+                text: `<p>Государственный природный заказник регионального значения площадью 8,7 тыс. га. Создан для охраны пойменных экосистем реки Плавы. Здесь обитают редкие виды птиц: серый журавль, филин, чёрный коршун. Встречаются растения, занесённые в Красную книгу Тульской области.</p>`
+            },
+            'place-church': {
+                title: 'Церковь Сергия Радонежского',
+                text: `<p>Каменный храм построен в 1824 году в стиле классицизм. В советские годы был закрыт, использовался под склад и клуб. Возвращён верующим в 1991 году, отреставрирован. Действующий храм, работает воскресная школа. Духовный центр православных жителей Плавска.</p>`
+            },
+            'history-ancient': {
+                title: 'Древняя история родного края',
+                text: `<p>Территория заселена с эпохи неолита (V–III тыс. до н.э.). В раннем средневековье земли вятичей, курганные могильники. Через край проходил торговый путь «из варяг в греки». Первое летописное упоминание относится к XII веку. В XIV веке вошло в состав Московского княжества. Сохранились фрагменты засечной черты XVI–XVII вв.</p>`
+            },
+            'history-19': {
+                title: 'Плавск в XIX–XX веках',
+                text: `<p>После строительства железной дороги Москва — Курск (1868) Плавск стал крупным торговым центром. Купцы Головины, Лыковы строили лавки, школы, больницы. В 1870 открыта земская больница. Плавск славился ярмарками. В 1939 году получил статус города. В годы войны был оккупирован, освобождён в 1943 году.</p>`
+            },
+            'history-modern': {
+                title: 'Современная история',
+                text: `<p>Послевоенное восстановление: построены маслосырзавод, элеватор. С 2000-х развитие сельского хозяйства, мясокомбинат, агрофирмы. В 2019 году Плавск отметил 80-летие. Благоустроены набережная, парк, открыт ФОК. Развивается туризм, фестивали.</p>`
+            },
+            'people-heroes': {
+                title: 'Герои Советского Союза',
+                text: `<p><strong>Борис Феоктистович Сафонов</strong> (1915–1942) — дважды Герой Советского Союза, лётчик-ас, сбил 25 самолётов.<br>
+                <strong>Алексей Тихонович Карпов</strong> (1917–1944) — лётчик-штурмовик, Герой Советского Союза.<br>
+                <strong>Михаил Иванович Наумов</strong> (1908–1974) — командир партизанского соединения, Герой Советского Союза.<br>
+                <strong>Пётр Степанович Курочкин</strong> (1911–1974) — танкист, Герой Советского Союза.<br>
+                Всего 12 Героев Советского Союза и 2 Героя России.</p>`
+            },
+            'people-culture': {
+                title: 'Учёные, писатели, деятели культуры',
+                text: `<p><strong>Владимир Александрович Ситников</strong> — писатель, член Союза писателей России.<br>
+                <strong>Николай Иванович Родичев</strong> — краевед, основатель народного музея.<br>
+                <strong>Елена Владимировна Кузнецова</strong> — художник-керамист.<br>
+                <strong>Владимир Михайлович Богданов</strong> — композитор, руководитель хора.<br>
+                Развитию культуры способствуют Дом ремёсел, детская школа искусств.</p>`
+            },
+            'people-honor': {
+                title: 'Почётные граждане Плавска',
+                text: `<p>Звание присваивается с 1975 года. Среди награждённых: И.С. Минаев (ветеран войны), З.П. Соловьёва (заслуженный учитель), В.Ф. Жуков (заслуженный врач), А.И. Щербаков (строитель), Г.А. Рыжков (краевед), В.П. Орлова (работник культуры). В 2023 году звание присвоено Б.Ф. Сафонову (посмертно).</p>`
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const closeModalSpan = document.querySelector('.close-modal');
+
+        function openModal(id) {
+            const data = modalData[id];
+            if (data) {
+                modalTitle.innerHTML = data.title;
+                modalText.innerHTML = data.text;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelectorAll('[data-modal]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const modalId = el.getAttribute('data-modal');
+                if (modalId) openModal(modalId);
+            });
+        });
+
+        closeModalSpan.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+        });
+
+        document.querySelectorAll('.nav-links a, .btn-scroll, .sitemap a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const hash = this.getAttribute('href');
+                if (hash && hash.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(hash);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
